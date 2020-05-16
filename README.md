@@ -4,7 +4,7 @@ Street objects detection and ranging on a road traffic, esp. based on camera fee
 
 # Architecture
 
-[CameraReader] -> [FramesDropper/Filter] -> [Models for inference array] -> [Collator] -> [DistanceCalculator]
+[CameraReader] -> [FramesDropper/Filter] -> [Models for inference array] -> [DistanceCalculator]
 
 # Abbreviations
 
@@ -17,9 +17,6 @@ Street objects detection and ranging on a road traffic, esp. based on camera fee
 ### Models for inference array
 - PyDnet and TfSsdMobileNet should be enough to run on CPU for inference
 
-### Collator
-- Combines the async results from the models
-
 ### DistanceCalculator
 - For every labelled object under the bounding box, take values from pydnet output and calculate a mean/median value representing distance from camera
 
@@ -30,9 +27,8 @@ Street objects detection and ranging on a road traffic, esp. based on camera fee
 - Set tuning parameters for the frames dropper e.g. time gap between frames, IsOldFramesAllowed
 - Output from CameraFeed -> Frame
 - Output from FramesDropper -> Frame
-- Output from PyDnet -> InferredData(Frame, Type=pydnet, Disparity, LabelledBBox=None)
+- Output from PyDnet -> InferredData(Type=pydnet, Disparity, LabelledBBox=None)
 - Output from TfSsdMobileNet -> InferredData(Type=tfssdmobilenet, Disparity=None, LabelledBBox)
-- Output Collator maintains a hashmap[camId][imageId] => {IsDisparityMatrixAvailabel, IsLabelledBBoxAvailabel} and if both conditions are met, publish the result as CollatedData
 - Output from DistanceCalculator -> LabelledBBoxWithDistance([{BBox, Label, Distance}, ...])
 
 ## Data Models
@@ -40,7 +36,6 @@ Street objects detection and ranging on a road traffic, esp. based on camera fee
 - Disparity(Matrix)
 - LabelledBBox([{BBox, Label}, ...])
 - InferredData(Frame, Type, Disparity, LabelledBBox)
-- CollatedData(Frame, Disparity, LabelledBBox)
 - LabelledBBoxWithDistance([{BBox, Label, Distance}, ...])
 
 # Progress
@@ -50,14 +45,13 @@ Street objects detection and ranging on a road traffic, esp. based on camera fee
 - [x] Set tuning parameters for the frames dropper e.g. time gap between frames, IsOldFramesAllowed
 - [x] Output from CameraFeed -> Frame
 - [x] Output from FramesDropper -> Frame
-- [ ] Output from PyDnet -> InferredData(Frame, Type=pydnet, Disparity, LabelledBBox=None)
-- [ ] Output from TfSsdMobileNet -> InferredData(Type=tfssdmobilenet, Disparity=None, LabelledBBox)
-- [ ] Output Collator maintains a hashmap[camId][imageId] => {IsDisparityMatrixAvailabel, IsLabelledBBoxAvailabel} and if both conditions are met, publish the result as CollatedData
+- [ ] Output from PyDnet -> InferredData*(Type=pydnet, Disparity, LabelledBBox=None)
+- [ ] Output from TfSsdMobileNet -> InferredData*(Type=tfssdmobilenet, Disparity=None, LabelledBBox)
+- [ ] Collated data from both models
 - [ ] Output from DistanceCalculator -> LabelledBBoxWithDistance([{BBox, Label, Distance}, ...])
 
 - [x] Frame(camId, frame, timestamp=Timestamp, imageId=Random)
-- [ ] Disparity(Matrix)
+- [ ] Disparity(Matrix/GrayImage)
 - [ ] LabelledBBox([{BBox, Label}, ...])
 - [ ] InferredData(Frame, Type, Disparity, LabelledBBox)
-- [ ] CollatedData(Frame, Disparity, LabelledBBox)
 - [ ] LabelledBBoxWithDistance([{BBox, Label, Distance}, ...])
