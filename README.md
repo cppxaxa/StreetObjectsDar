@@ -44,9 +44,9 @@ Street objects detection and ranging on a road traffic, esp. based on camera fee
 - LabelledBBoxWithDistance([{BBox, Label, Distance}, ...])
 
 # Progress
-- [ ] Define the pipeline with PyPiper with dummy modules
+- [x] Define the pipeline with PyPiper with dummy modules
+- [x] Develop the frames dropper and dummy CameraReader
 - [ ] Test the performance
-- [ ] Develop the frames dropper and dummy CameraReader
 - [ ] Set tuning parameters for the frames dropper e.g. time gap between frames, IsOldFramesAllowed
 - [ ] Output from CameraFeed -> Frame
 - [ ] Output from FramesDropper -> Frame
@@ -55,7 +55,7 @@ Street objects detection and ranging on a road traffic, esp. based on camera fee
 - [ ] Output Collator maintains a hashmap[camId][imageId] => {IsDisparityMatrixAvailabel, IsLabelledBBoxAvailabel} and if both conditions are met, publish the result as CollatedData
 - [ ] Output from DistanceCalculator -> LabelledBBoxWithDistance([{BBox, Label, Distance}, ...])
 
-- [ ] Frame(camId, timestamp, imageId=Random, frame)
+- [x] Frame(camId, frame, timestamp=Timestamp, imageId=Random)
 - [ ] Disparity(Matrix)
 - [ ] LabelledBBox([{BBox, Label}, ...])
 - [ ] InferredData(Frame, Type, Disparity, LabelledBBox)

@@ -1,1 +1,22 @@
-{}
+{
+    "SampleCameraReaderConfiguration": [
+        {
+            "Type": "Webcam",
+            "WebcamId": 0
+        },
+        {
+            "Type": "AndroidIpWebcam",
+            "ShotUrl": "http://192.168.43.1:8080/shot.jpg"
+        },
+        {
+            "Type": "StaticImage",
+            "Url": "image.jpg"
+        }
+    ],
+    "CameraReaderConfiguration": [
+        {
+            "Type": "StaticImage",
+            "Url": "image.jpg"
+        }
+    ]
+}
