@@ -18,5 +18,8 @@
             "Type": "StaticImage",
             "Url": "image.jpg"
         }
-    ]
+    ],
+    "FramesDropperConfiguration": {
+        "DropOnePerCount": 0
+    }
 }

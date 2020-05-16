@@ -46,10 +46,10 @@ Street objects detection and ranging on a road traffic, esp. based on camera fee
 # Progress
 - [x] Define the pipeline with PyPiper with dummy modules
 - [x] Develop the frames dropper and dummy CameraReader
-- [ ] Test the performance
-- [ ] Set tuning parameters for the frames dropper e.g. time gap between frames, IsOldFramesAllowed
-- [ ] Output from CameraFeed -> Frame
-- [ ] Output from FramesDropper -> Frame
+- [x] Test the performance
+- [x] Set tuning parameters for the frames dropper e.g. time gap between frames, IsOldFramesAllowed
+- [x] Output from CameraFeed -> Frame
+- [x] Output from FramesDropper -> Frame
 - [ ] Output from PyDnet -> InferredData(Frame, Type=pydnet, Disparity, LabelledBBox=None)
 - [ ] Output from TfSsdMobileNet -> InferredData(Type=tfssdmobilenet, Disparity=None, LabelledBBox)
 - [ ] Output Collator maintains a hashmap[camId][imageId] => {IsDisparityMatrixAvailabel, IsLabelledBBoxAvailabel} and if both conditions are met, publish the result as CollatedData

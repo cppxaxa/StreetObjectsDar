@@ -9,14 +9,15 @@ import json
 from lib.pyPiper.pyPiper import Pipeline
 
 def CreateStreetObjectsDarPipeline(callbackNode, threads=1, quiet=False):
+    configurationFilename = "StreetObjectsDarConfiguration.json"
     configurationObject = None
-    with open("StreetObjectsDarConfiguration.json") as f:
+    with open(configurationFilename) as f:
         configurationObject = json.loads(f.read())
     
     cameraReaderNode = CameraReaderNode("CameraReaderNode", \
         configurationObject = configurationObject)
     framesDropperNode = FramesDropperNode("FramesDropperNode", \
-        configurationObject = configurationObject)
+        configurationFilename = configurationFilename)
     inferenceGeneratorNode = InferenceGeneratorNode("InferenceGeneratorNode", \
         configurationObject = configurationObject)
     collatorNode = CollatorNode("CollatorNode", \
@@ -45,7 +46,7 @@ def CreateStreetObjectsDarPipeline(callbackNode, threads=1, quiet=False):
 
 class PipelineFactory:
     @staticmethod
-    def CreatePipeline(type, callbackNode, threads=1, quiet=False):
+    def CreatePipeline(type, callbackNode, threads=2, quiet=False):
         if type == "StreetObjectsDar":
             return CreateStreetObjectsDarPipeline(callbackNode, threads, quiet)
         else:
