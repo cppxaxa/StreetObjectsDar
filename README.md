@@ -44,8 +44,8 @@ Street objects detection and ranging on a road traffic, esp. based on camera fee
 - LabelledBBoxWithDistance([{BBox, Label, Distance}, ...])
 
 # Progress
-- [ ] Define the pipeline with PyPiper with dummy modules
-- [ ] Test the performance
+[ ] Define the pipeline with PyPiper with dummy modules
+[ ] Test the performance
 - [ ] Develop the frames dropper and dummy CameraReader
 - [ ] Set tuning parameters for the frames dropper e.g. time gap between frames, IsOldFramesAllowed
 - [ ] Output from CameraFeed -> Frame
