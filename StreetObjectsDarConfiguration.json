@@ -21,5 +21,10 @@
     ],
     "FramesDropperConfiguration": {
         "DropOnePerCount": 0
+    },
+    "PyDnetConfiguration": {
+        "Checkpoint": "lib/pydnet/checkpoint/IROS18/pydnet",
+        "InputWidth": 640,
+        "InputHeight": 448
     }
 }

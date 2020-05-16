@@ -3,6 +3,9 @@
 
 from lib.CameraAdapters import *
 from lib.models.Frame import *
+from lib.pydnet.infer import *
+
+import cv2
 
 # Driver code
 
@@ -10,21 +13,15 @@ data = None
 with open("StreetObjectsDarConfiguration.json") as f:
     data = f.read()
 
-config = json.loads(data)["CameraReaderConfiguration"]
+checkpoint = json.loads(data)["PyDnetConfiguration"]["Checkpoint"]
+width = json.loads(data)["PyDnetConfiguration"]["InputWidth"]
+height = json.loads(data)["PyDnetConfiguration"]["InputHeight"]
 
-cameraList = []
+model = PyDNetInference(checkpoint, width, height)
 
-for camConf in config:
-    print(camConf)
-    camera = CreateCameraObject(camConf)
-    cameraList.append(camera)
+img = cv2.imread("image.jpg")
+disp = model.Run(img)
 
-for i in range(1):
-    for cam in cameraList:
-        img = cam.grabThrottled()
-        print(img)
-    print("Iter", i)
-
-cv2.imshow('', img)
+cv2.imshow('', disp)
 cv2.waitKey()
 
