@@ -10,8 +10,8 @@ def CalculateBBoxDistance(disparity, sourceShape, bboxList):
     for bbox in bboxList:
         x = min(bbox['topleft']['x'], bbox['bottomright']['x'])
         y = min(bbox['topleft']['y'], bbox['bottomright']['y'])
-        w = max(bbox['topleft']['x'], bbox['bottomright']['x'])
-        h = max(bbox['topleft']['y'], bbox['bottomright']['y'])
+        w = max(bbox['topleft']['x'], bbox['bottomright']['x']) - x
+        h = max(bbox['topleft']['y'], bbox['bottomright']['y']) - y
         nx = int(x * multiplierW)
         ny = int(y * multiplierH)
         nw = int(w * multiplierW)

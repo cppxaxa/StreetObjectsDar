@@ -20,15 +20,19 @@ def DrawBBoxWithLabelledBBox(img, sourceShape, bboxList):
         end = (int((bbox['x'] + bbox['w']) * multiplierW), 
                     int((bbox['y'] + bbox['h']) * multiplierH))
         color = (0, 255, 0)
-        if bbox['distance'] < 0.8:
+        thickness = 1
+        labelRequired = False
+        if bbox['distance'] < 0.85:
             color = (255, 0, 0)
-        if bbox['distance'] < 0.6:
+        if bbox['distance'] < 0.58:
             color = (0, 0, 255)
-        thickness = 2
+            thickness = 2
+            labelRequired = True
         img = cv2.rectangle(img, start, end, color, thickness)
-        img = cv2.putText(img, bbox['label'] + "," + str(bbox['distance']), \
-            (start[0] + 5, start[1] + 15), cv2.FONT_HERSHEY_SIMPLEX, \
-                0.5, color, 1, cv2.LINE_AA)
+        if labelRequired:
+            img = cv2.putText(img, bbox['label'] + "," + str(bbox['confidence']), \
+                (start[0] + 5, start[1] + 15), cv2.FONT_HERSHEY_SIMPLEX, \
+                    0.5, color, 1, cv2.LINE_AA)
 
 
 class CustomCallbackNode(Node):
