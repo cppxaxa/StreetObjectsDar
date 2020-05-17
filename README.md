@@ -25,6 +25,9 @@ Street objects detection and ranging on a road traffic, esp. based on camera fee
 ### DistanceCalculator
 - For every labelled object under the bounding box, take values from pydnet output and calculate a mean/median value representing distance from camera
 
+### Suggest Throttling Percentage
+- FramesDropper accepts a percentage for dropping frames, this suggestion will take calculate the fps and suggest optimal frames drop percentage
+
 # Development Tasks
 - Define the pipeline with PyPiper with dummy modules
 - Test the performance
