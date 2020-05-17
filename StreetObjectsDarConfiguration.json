@@ -19,6 +19,10 @@
             "Url": "image.jpg"
         }
     ],
+    "Pipeline": {
+        "Threads": 3,
+        "Quiet": true
+    },
     "FramesDropperConfiguration": {
         "TakeSpecifiedPercentageFrames": 100
     },

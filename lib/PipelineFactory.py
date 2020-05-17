@@ -8,8 +8,8 @@ from lib.DistanceCalculatorNode import *
 import json
 from lib.pyPiper.pyPiper import Pipeline
 
-def CreateStreetObjectsDarPipeline(callbackNode, threads=1, quiet=False):
-    configurationFilename = "StreetObjectsDarConfiguration.json"
+def CreateStreetObjectsDarPipeline(callbackNode, \
+                configurationFilename, threads=1, quiet=False):
     configurationObject = None
     with open(configurationFilename) as f:
         configurationObject = json.loads(f.read())
@@ -46,9 +46,19 @@ def CreateStreetObjectsDarPipeline(callbackNode, threads=1, quiet=False):
 
 class PipelineFactory:
     @staticmethod
-    def CreatePipeline(type, callbackNode, threads=2, quiet=False):
+    def CreatePipeline(type, callbackNode):
+        # Load configuration
+        configurationFilename = "StreetObjectsDarConfiguration.json"
+        configurationObject = None
+        with open(configurationFilename) as f:
+            configurationObject = json.loads(f.read())
+        threads = configurationObject["Pipeline"]["Threads"]
+        quiet = configurationObject["Pipeline"]["Quiet"]
+
+        # Generate the pipeline
         if type == "StreetObjectsDar":
-            return CreateStreetObjectsDarPipeline(callbackNode, threads, quiet)
+            return CreateStreetObjectsDarPipeline(callbackNode, \
+                configurationFilename, threads, quiet)
         else:
             print("PipelineFactory::CreatePipeline, type = {} invalid".format(type))
             return None
