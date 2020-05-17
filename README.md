@@ -45,13 +45,14 @@ Street objects detection and ranging on a road traffic, esp. based on camera fee
 - [x] Set tuning parameters for the frames dropper e.g. time gap between frames, IsOldFramesAllowed
 - [x] Output from CameraFeed -> Frame
 - [x] Output from FramesDropper -> Frame
-- [ ] Output from PyDnet -> InferredData*(Type=pydnet, Disparity, LabelledBBox=None)
-- [ ] Output from TfSsdMobileNet -> InferredData*(Type=tfssdmobilenet, Disparity=None, LabelledBBox)
-- [ ] Collated data from both models
+- [x] Output from PyDnet -> InferredData*(Type=pydnet, Disparity, LabelledBBox=None)
+- [x] Output from TfSsdMobileNet -> InferredData*(Type=tfssdmobilenet, Disparity=None, LabelledBBox)
+- [x] Collated data from both models
 - [ ] Output from DistanceCalculator -> LabelledBBoxWithDistance([{BBox, Label, Distance}, ...])
+- [ ] Find the pipeline fps, suggest throttling
 
 - [x] Frame(camId, frame, timestamp=Timestamp, imageId=Random)
-- [ ] Disparity(Matrix/GrayImage)
-- [ ] LabelledBBox([{BBox, Label}, ...])
-- [ ] InferredData(Frame, Type, Disparity, LabelledBBox)
+- [x] Disparity(Matrix/GrayImage)
+- [x] LabelledBBox([{bottomright, topleft, label, confidence}, ...])
+- [x] InferredData(Frame, Type, Disparity, LabelledBBox)
 - [ ] LabelledBBoxWithDistance([{BBox, Label, Distance}, ...])

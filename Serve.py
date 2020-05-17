@@ -9,7 +9,7 @@ from lib.PipelineFactory import *
 
 class CustomCallbackNode(Node):
     def run(self, data):
-        print(data)
+        print(data.LabelledBBox)
 
 if __name__ == '__main__':
     customCallbackNode = CustomCallbackNode("endpoint")
