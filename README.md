@@ -4,15 +4,15 @@ Street objects detection and ranging on a road traffic, esp. based on camera fee
 
 # Architecture
 
-[CameraReader] -> [FramesDropper/Filter] -> [Models for inference array] -> [DistanceCalculator]
+[CameraReader] -> [FramesDropper/Filter] -> [Models for inference array] -> [DistanceCalculator] -> [Suggest Throttling Percentage] -> [Custom Callback]
 
 # Abbreviations
 
 ### CameraReader
 - Reads from various image sources - static image, IpCamera, AndroidIPWebcam, Webcam
 
-### FramesDropper/Filter - tightly coupled with CameraReader for performance
-- Drops the extra frames and does the filtering if required (as of now, no filtering)
+### FramesDropper/Filter
+- Drops the extra frames and does the filtering if required
 
 ### Models for inference array
 - PyDnet and TfSsdMobileNet should be enough to run on CPU for inference

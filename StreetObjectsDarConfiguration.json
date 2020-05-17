@@ -20,11 +20,16 @@
         }
     ],
     "FramesDropperConfiguration": {
-        "DropOnePerCount": 0
+        "TakeSpecifiedPercentageFrames": 100
     },
     "PyDnetConfiguration": {
         "Checkpoint": "lib/pydnet/checkpoint/IROS18/pydnet",
         "InputWidth": 640,
         "InputHeight": 448
+    },
+    "TfSsdMobilenet": {
+        "Checkpoint": "lib/tfSsdMobilenet/object_detection/ssd_mobilenet_v1_coco_11_06_2017/frozen_inference_graph.pb",
+        "LabelMapPath": "lib/tfSsdMobilenet/object_detection/data/mscoco_label_map.pbtxt",
+        "ClassCount": 90
     }
 }

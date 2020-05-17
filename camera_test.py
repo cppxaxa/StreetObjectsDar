@@ -1,11 +1,43 @@
 
 
+# import threading
+# import queue
+
+# def fn1(data):
+#     return 10 + data
+
+# def fn2(data):
+#     return 20 + data
+
+# q = queue.Queue()
+
+# t1 = threading.Thread(target=lambda qParam, dataParam: qParam.put(fn1(dataParam)), args=[q, 5])
+# t2 = threading.Thread(target=lambda qParam, dataParam: qParam.put(fn2(dataParam)), args=[q, 5])
+
+# t1.start()
+# t2.start()
+
+# t1.join()
+# t2.join()
+
+# while not q.empty():
+#     el = q.get()
+#     print(el)
+
+# exit()
+
+
+
+
 
 from lib.CameraAdapters import *
 from lib.models.Frame import *
 from lib.pydnet.infer import *
 
 import cv2
+
+import threading
+import queue
 
 
 import sys
@@ -18,24 +50,72 @@ from minimal_object_detection_lib import *
 data = None
 with open("StreetObjectsDarConfiguration.json") as f:
     data = f.read()
+configuration = json.loads(data)
 
-checkpoint = json.loads(data)["PyDnetConfiguration"]["Checkpoint"]
-width = json.loads(data)["PyDnetConfiguration"]["InputWidth"]
-height = json.loads(data)["PyDnetConfiguration"]["InputHeight"]
+pydCheckpoint = configuration["PyDnetConfiguration"]["Checkpoint"]
+pydWidth = configuration["PyDnetConfiguration"]["InputWidth"]
+pydHeight = configuration["PyDnetConfiguration"]["InputHeight"]
 
-pydModel = PyDNetInference(checkpoint, width, height)
+pydModel = PyDNetInference(pydCheckpoint, pydWidth, pydHeight)
 
-objectDetector = MinimalObjectDetector('lib/tfSsdMobilenet/object_detection/ssd_mobilenet_v1_coco_11_06_2017/frozen_inference_graph.pb', \
-                        'lib/tfSsdMobilenet/object_detection/data/mscoco_label_map.pbtxt', 90)
+ssdCheckpoint = configuration["TfSsdMobilenet"]["Checkpoint"]
+ssdLabelMap = configuration["TfSsdMobilenet"]["LabelMapPath"]
+ssdClassCount = configuration["TfSsdMobilenet"]["ClassCount"]
+
+
+objectDetector = MinimalObjectDetector(ssdCheckpoint, \
+                        ssdLabelMap, ssdClassCount)
 
 img = cv2.imread("image.jpg")
+
+
+a = time.perf_counter()
 disp = pydModel.Run(img)
-
-cv2.imshow('', disp)
-cv2.waitKey(3000)
-cv2.destroyAllWindows()
-
-
 result = objectDetector.Process(img)
+b = time.perf_counter()
+print("Time", b - a)
 
-print(json.dumps(result))
+# a = time.perf_counter()
+# disp = pydModel.Run(img)
+# result = objectDetector.Process(img)
+# b = time.perf_counter()
+# print("Time", b - a)
+
+# a = time.perf_counter()
+# disp = pydModel.Run(img)
+# result = objectDetector.Process(img)
+# b = time.perf_counter()
+# print("Time", b - a)
+
+
+resultQueue = queue.Queue()
+threadList = []
+
+t1 = threading.Thread(target=lambda queueParam, frameParam: \
+    queueParam.put({"Disparity": pydModel.Run(frameParam)}), \
+        args=[resultQueue, img])
+threadList.append(t1)
+
+t2 = threading.Thread(target=lambda queueParam, frameParam: \
+    queueParam.put({"LabelledBBox": objectDetector.Process(frameParam)}), \
+        args=[resultQueue, img])
+threadList.append(t2)
+
+a = time.perf_counter()
+for t in threadList:
+    t.start()
+
+for t in threadList:
+    t.join()
+b = time.perf_counter()
+
+print("Time", b - a)
+
+while not resultQueue.empty():
+    el = resultQueue.get()
+    if "Disparity" in el:
+        cv2.imshow('', el["Disparity"])
+        cv2.waitKey(3000)
+        cv2.destroyAllWindows()
+
+# print(json.dumps(result))
