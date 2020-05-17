@@ -2,6 +2,11 @@
 
 Street objects detection and ranging on a road traffic, esp. based on camera feed at a car or pedestrian view
 
+# References/ Inspiration
+- Derieved TfSsdMobilenet from tensorflow examples
+- Derieved pydnet from https://github.com/mattpoggi/pydnet
+- Copied pyPiper source https://github.com/daniyall/pyPiper
+
 # Architecture
 
 [CameraReader] -> [FramesDropper/Filter] -> [Models for inference array] -> [DistanceCalculator] -> [Suggest Throttling Percentage] -> [Custom Callback]
