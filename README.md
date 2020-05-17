@@ -37,6 +37,7 @@ Street objects detection and ranging on a road traffic, esp. based on camera fee
 - LabelledBBox([{BBox, Label}, ...])
 - InferredData(Frame, Type, Disparity, LabelledBBox)
 - LabelledBBoxWithDistance([{BBox, Label, Distance}, ...])
+- LabelledBBoxWithDistanceFps([{BBox, Label, Distance, Fps}, ...])
 
 # Progress
 - [x] Define the pipeline with PyPiper with dummy modules
@@ -55,4 +56,5 @@ Street objects detection and ranging on a road traffic, esp. based on camera fee
 - [x] Disparity(Matrix/GrayImage)
 - [x] LabelledBBox([{bottomright, topleft, label, confidence}, ...])
 - [x] InferredData(Frame, Type, Disparity, LabelledBBox)
-- [ ] LabelledBBoxWithDistance([{BBox, Label, Distance}, ...])
+- [ ] LabelledBBoxWithDistance(Frame, Type, Disparity, BBoxList=[{BBox, Distance}, ...])
+- [ ] LabelledBBoxWithDistanceFps(Frame, Type, Disparity, Fps, BBoxList=[{BBox, Distance}, ...])
