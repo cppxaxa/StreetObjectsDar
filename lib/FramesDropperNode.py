@@ -32,7 +32,7 @@ class FramesDropperNode(Node):
             #
             # (100 // 25) - 1 = 3
 
-            if self.hashMap[frame.camId] >= (100 // 25):
+            if self.hashMap[frame.camId] >= (100 // self.takeSpecifiedPercentageFrames):
                 self.hashMap[frame.camId] = 0
                 return True
             return False
