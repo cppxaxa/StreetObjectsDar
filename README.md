@@ -49,12 +49,17 @@ Street objects detection and ranging on a road traffic, esp. based on camera fee
 - [x] Output from PyDnet -> InferredData*(Type=pydnet, Disparity, LabelledBBox=None)
 - [x] Output from TfSsdMobileNet -> InferredData*(Type=tfssdmobilenet, Disparity=None, LabelledBBox)
 - [x] Collated data from both models
-- [ ] Output from DistanceCalculator -> LabelledBBoxWithDistance([{BBox, Label, Distance}, ...])
+- [x] Output from DistanceCalculator -> LabelledBBoxWithDistance([{BBox, Label, Distance}, ...])
 - [ ] Find the pipeline fps, suggest throttling
 
 - [x] Frame(camId, frame, timestamp=Timestamp, imageId=Random)
 - [x] Disparity(Matrix/GrayImage)
 - [x] LabelledBBox([{bottomright, topleft, label, confidence}, ...])
 - [x] InferredData(Frame, Type, Disparity, LabelledBBox)
-- [ ] LabelledBBoxWithDistance(Frame, Type, Disparity, BBoxList=[{BBox, Distance}, ...])
+- [x] LabelledBBoxWithDistance(Frame, Type, Disparity, BBoxList=[{BBox, Distance}, ...])
 - [ ] LabelledBBoxWithDistanceFps(Frame, Type, Disparity, Fps, BBoxList=[{BBox, Distance}, ...])
+
+# Snapshot
+
+![Snap001](/Snaps/Snap001.png)
+Format: ![Snap001](https://github.com/cppxaxa/StreetObjectsDar/Snaps/Snap001.png)
