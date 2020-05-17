@@ -62,4 +62,3 @@ Street objects detection and ranging on a road traffic, esp. based on camera fee
 # Snapshot
 
 ![Snap001](/Snaps/Snap001.png)
-Format: ![Snap001](https://github.com/cppxaxa/StreetObjectsDar/Snaps/Snap001.png)
