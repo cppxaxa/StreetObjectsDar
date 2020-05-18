@@ -70,3 +70,4 @@ Street objects detection and ranging on a road traffic, esp. based on camera fee
 # Snapshot
 
 ![Snap001](/Snaps/Snap001.png)
+RedBoxes - Closest object, GreenBoxes - Far objects
