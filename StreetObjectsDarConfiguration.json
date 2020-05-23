@@ -2,21 +2,37 @@
     "SampleCameraReaderConfiguration": [
         {
             "Type": "Webcam",
-            "WebcamId": 0
+            "WebcamId": 0,
+            "FlipLeftRight": false
         },
         {
             "Type": "AndroidIpWebcam",
-            "ShotUrl": "http://192.168.43.1:8080/shot.jpg"
+            "ShotUrl": "http://192.168.43.1:8080/shot.jpg",
+            "FlipLeftRight": false
         },
         {
             "Type": "StaticImage",
-            "Url": "image.jpg"
+            "Url": "image.jpg",
+            "FlipLeftRight": true
+        },
+        {
+            "Type": "VideoClip",
+            "Url": "record.mp4",
+            "FlipLeftRight": true
+        },
+        {
+            "Type": "Slideshow",
+            "Sequence": ["01.jpg", "02.jpg", "03.jpg"],
+            "FlipLeftRight": false,
+            "Fps": 2
         }
     ],
     "CameraReaderConfiguration": [
         {
-            "Type": "StaticImage",
-            "Url": "image.jpg"
+            "Type": "Slideshow",
+            "Sequence": ["01.jpg", "02.jpg", "03.jpg"],
+            "FlipLeftRight": false,
+            "Fps": 2
         }
     ],
     "Pipeline": {
@@ -57,7 +73,7 @@
         "FrameParam": false,
         "DisparityParam": false,
         "SupportedLabels": [
-            "car", "truck", "bicycle", "motorcycle", "bus", "cat", "dog", "horse", "sheep", "cow", "elephant"
+            "person", "car", "truck", "bicycle", "motorcycle", "bus", "cat", "dog", "horse", "sheep", "cow", "elephant"
         ]
     }
 }

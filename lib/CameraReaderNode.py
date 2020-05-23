@@ -21,7 +21,8 @@ class CameraReaderNode(Node):
         if len(self.cameraList) <= 0:
             self.close()
 
-        for _ in range(1):
+        # for _ in range(7):
+        while True:
             id = 0
             for cam in self.cameraList:
                 id += 1

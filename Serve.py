@@ -23,15 +23,15 @@ def DrawBBoxWithLabelledBBox(img, sourceShape, bboxList):
         color = (0, 255, 0)
         thickness = 1
         labelRequired = False
-        if bbox['distance'] < 0.85:
-            color = (255, 0, 0)
-        if bbox['distance'] < 0.58:
-            color = (0, 0, 255)
+        if bbox['distance'] >= 0.55:
             thickness = 2
+            color = (0, 0, 255)
             labelRequired = True
+        elif bbox['distance'] >= 0.4:
+            color = (255, 0, 0)
         img = cv2.rectangle(img, start, end, color, thickness)
         if labelRequired:
-            img = cv2.putText(img, bbox['label'] + "," + str(bbox['confidence']), \
+            img = cv2.putText(img, bbox['label'] + "," + str(bbox['distance']), \
                 (start[0] + 5, start[1] + 15), cv2.FONT_HERSHEY_SIMPLEX, \
                     0.5, color, 1, cv2.LINE_AA)
 
