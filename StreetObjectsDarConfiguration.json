@@ -35,5 +35,28 @@
         "Checkpoint": "lib/tfSsdMobilenet/object_detection/ssd_mobilenet_v1_coco_11_06_2017/frozen_inference_graph.pb",
         "LabelMapPath": "lib/tfSsdMobilenet/object_detection/data/mscoco_label_map.pbtxt",
         "ClassCount": 90
+    },
+    "ServerConfiguration": {
+        "Host": "localhost",
+        "SupportAllHost": true,
+        "Port": 5000
+    },
+    "ResultConfiguration": {
+        "StreetObjectsDarResultsV1": true
+    },
+    "StreetObjectsDarResultsV1": {
+        "CameraMetadata": [
+            {
+                "CameraFovAngle": 130
+            }
+        ],
+        "WidthParam": true,
+        "HeightParam": true,
+        "BBoxType": "xwd",
+        "FrameParam": false,
+        "DisparityParam": false,
+        "SupportedLabels": [
+            "car", "truck", "bicycle", "motorcycle", "bus", "cat", "dog", "horse", "sheep", "cow", "elephant"
+        ]
     }
 }

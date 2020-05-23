@@ -66,6 +66,9 @@ Street objects detection and ranging on a road traffic, esp. based on camera fee
 - [x] InferredData(Frame, Type, Disparity, LabelledBBox)
 - [x] LabelledBBoxWithDistance(Frame, Type, Disparity, BBoxList=[{BBox, Distance}, ...])
 - [ ] LabelledBBoxWithDistanceFps(Frame, Type, Disparity, Fps, BBoxList=[{BBox, Distance}, ...])
+- [ ] Start own socketIO server
+- [ ] Host the plotter
+- [ ] Host the room and connect to plotter
 
 # Snapshot
 

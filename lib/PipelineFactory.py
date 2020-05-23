@@ -4,6 +4,7 @@ from lib.FramesDropperNode import *
 from lib.InferenceGeneratorNode import *
 from lib.CollatorNode import *
 from lib.DistanceCalculatorNode import *
+from lib.ResultsGeneratorFactory import *
 
 import json
 from lib.pyPiper.pyPiper import Pipeline

@@ -6,6 +6,7 @@ warnings.filterwarnings("ignore",category=UserWarning)
 warnings.filterwarnings("ignore",category=Warning)
 
 from lib.PipelineFactory import *
+from lib.ResultsGeneratorFactory import *
 
 import cv2
 import random
@@ -54,7 +55,11 @@ class CustomCallbackNode(Node):
 
 if __name__ == '__main__':
     customCallbackNode = CustomCallbackNode("endpoint")
-    pipeline = PipelineFactory.CreatePipeline(callbackNode=customCallbackNode, \
+
+    resultsPublisherNode = ResultsFormatterFactory.CreateResultsFormatter(customCallbackNode)
+    # print(resultsPublisherNode)
+
+    pipeline = PipelineFactory.CreatePipeline(callbackNode=resultsPublisherNode, \
         type="StreetObjectsDar")
     pipeline.run()
     
