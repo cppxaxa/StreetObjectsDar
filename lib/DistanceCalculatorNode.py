@@ -2,6 +2,9 @@
 from lib.pyPiper.pyPiper import Node
 from lib.models.LabelledBBoxWithDistance import *
 
+import cv2
+import numpy as np
+
 def CalculateBBoxDistance(disparity, sourceShape, bboxList):
     targetShape = disparity.shape
     multiplierW = targetShape[0] / sourceShape[0]
@@ -16,7 +19,8 @@ def CalculateBBoxDistance(disparity, sourceShape, bboxList):
         ny = int(y * multiplierH)
         nw = int(w * multiplierW)
         nh = int(h * multiplierH)
-        croppedDisparity = disparity[nx: nx + nw, ny: ny + nh]
+        croppedDisparity = disparity[ny: ny + nh, nx: nx + nw]  # [y,x] is correct
+
         label = bbox['label']
         confidence = bbox['confidence']
         distance = croppedDisparity.mean()

@@ -21,7 +21,8 @@
     ],
     "Pipeline": {
         "Threads": 3,
-        "Quiet": true
+        "Quiet": true,
+        "DebugImages": false
     },
     "FramesDropperConfiguration": {
         "TakeSpecifiedPercentageFrames": 100

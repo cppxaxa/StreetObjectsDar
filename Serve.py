@@ -54,10 +54,15 @@ class CustomCallbackNode(Node):
         cv2.destroyWindow(str(id + 1))
 
 if __name__ == '__main__':
-    customCallbackNode = CustomCallbackNode("endpoint")
+    configurationFilename = "StreetObjectsDarConfiguration.json"
+    configurationObject = None
+    with open(configurationFilename) as f:
+        configurationObject = json.loads(f.read())
 
+    customCallbackNode = None
+    if configurationObject["Pipeline"]["DebugImages"]:
+        customCallbackNode = CustomCallbackNode("endpoint")
     resultsPublisherNode = ResultsFormatterFactory.CreateResultsFormatter(customCallbackNode)
-    # print(resultsPublisherNode)
 
     pipeline = PipelineFactory.CreatePipeline(callbackNode=resultsPublisherNode, \
         type="StreetObjectsDar")

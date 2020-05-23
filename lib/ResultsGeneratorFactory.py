@@ -96,3 +96,4 @@ class ResultsFormatterFactory:
         else:
             print("ResultsFormatterFactory::CreateResultsFormatter, invalid")
             return None
+
